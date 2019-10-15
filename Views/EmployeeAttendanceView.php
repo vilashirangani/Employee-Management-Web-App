@@ -18,7 +18,7 @@
         <div class="container">
             <div class="text-center">   
                     <br>
-                <h1 style="font-family:verdana;">Employee Attendance Details  <i class="fa fa-calendar-check-o" style="font-size:48px;color:black"></i></h1>
+                <h1 style="font-family:verdana;">Employee Attendance Sheet <i class="fa fa-calendar-check-o" style="font-size:48px;color:black"></i></h1>
                 <br>
                 <br>
                 <script>
@@ -43,13 +43,13 @@
 
                 <form method = 'post' class="form-horizontal">
                 <br>
-                Office Number
-                <input type="text" class="form-control" id="OfcNumber" name="OfcNumber"  placeholder ="Enter Office ID or select from table"/>
+                Department ID/Number
+                <input type="text" class="form-control" id="OfcNumber" name="OfcNumber"  placeholder ="Enter Department ID or Select from table list"/>
                             <br>
                             <table class='table table-dark'>
                             <tr>
                             <td>
-                            <input id="LeaveDates" width="276" placeholder ="Choose a date"/>
+                            <input id="LeaveDates" width="250" placeholder ="Choose a date"/>
                               <script>
                                   $('#LeaveDates').datepicker({
                                       uiLibrary: 'bootstrap4'
@@ -72,7 +72,7 @@
                           <table class='table table-dark'>
                           <tr>
                           <td>
-                          <input type="text" id="timepicker1" width="276"  placeholder ="Attend Time"  class="form-control"/>
+                          <input type="text" id="timepicker1" width="250"  placeholder ="Attend Time"  class="form-control"/>
                             <script>
                                 $('#timepicker1').timepicker({
                                     uiLibrary: 'bootstrap4'
@@ -80,7 +80,7 @@
                               </script>
                               </td>
                               <td>
-                              <input type="text" id="timepicker2" width="276"  placeholder ="Left Time"  class="form-control"/>
+                              <input type="text" id="timepicker2" width="250"  placeholder ="Left Time"  class="form-control"/>
                               <script>
                               $('#timepicker2').timepicker({
                                   uiLibrary: 'bootstrap4'
@@ -98,31 +98,32 @@
                           <input  formaction = "index.php?op=add" class="btn btn-success" type="submit" value="Add Working Hours"/>
                           <input  formaction = "index.php?op=leave" class="btn btn-primary" type="submit" value="Get Leave"/>
                     </form>
-
+                    
                     <?php
 
-                        include_once './EmployeeAttendanceController.php';
+include_once './EmployeeAttendanceController.php';
 
-                        $model = new EmployeeAttendanceController();
-                        $data = $model->TableActivity();
+$model = new EmployeeAttendanceController();
+$data = $model->TableActivity();
 
-                            echo "<table class='table table-dark' id = 'table'>";
-                            echo "<th>ID</th>
-                                <th>Working Hours</th>
-                                <th>Worked Weekdays</th>
-                                <th>Worked Weekends</th>";
+    echo "<table class='table table-dark' id = 'table'>";
+    echo "<th>ID</th>
+        <th>Working Hours</th>
+        <th>Worked Weekdays</th>
+        <th>Worked Weekends</th>";
 
-                            while($row = mysqli_fetch_assoc($data))
-                            {
-                                echo"<tr>
-                                        <td>{$row['OfcNumber']}</td>
-                                        <td>{$row['Hours']}</td>
-                                        <td>{$row['WorkedWeekDays']}</td>
-                                        <td>{$row['WorkedWeekEnds']}</td>
-                                </tr>";
-                            }
-                        echo "</table>";
-                    ?>
+    while($row = mysqli_fetch_assoc($data))
+    {
+        echo"<tr>
+                <td>{$row['OfcNumber']}</td>
+                <td>{$row['Hours']}</td>
+                <td>{$row['WorkedWeekDays']}</td>
+                <td>{$row['WorkedWeekEnds']}</td>
+        </tr>";
+    }
+echo "</table>";
+?>
+                    
 
                 <script>
 
